@@ -39,8 +39,9 @@
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="1/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8d-p2-5rk">
                                                 <rect key="frame" x="338" y="0.0" width="36" height="23.5"/>
+                                                <color key="tintColor" name="YP White"/>
                                                 <fontDescription key="fontDescription" name="YSDisplay-Medium" family="YS Display" pointSize="20"/>
-                                                <nil key="textColor"/>
+                                                <color key="textColor" name="YP White"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
@@ -77,6 +78,9 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="noButtonClicked:" destination="Igq-lw-Dm2" eventType="touchUpInside" id="SQA-87-qiQ"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2g8-hD-6gZ">
                                                 <rect key="frame" x="197" y="0.0" width="177" height="60"/>
@@ -91,6 +95,9 @@
                                                         <integer key="value" value="15"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="yesButtonClicked:" destination="Igq-lw-Dm2" eventType="touchUpInside" id="oeP-rW-Anu"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -106,6 +113,11 @@
                             <constraint firstItem="jDr-pP-WpO" firstAttribute="leading" secondItem="THE-kW-oLJ" secondAttribute="leading" constant="20" id="sfq-QY-e5x"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="w8d-p2-5rk" id="44n-kF-A8P"/>
+                        <outlet property="imageView" destination="XCN-4f-QWo" id="teO-K1-EEc"/>
+                        <outlet property="textLabel" destination="VVR-SE-RFK" id="aja-kD-xPR"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sL3-Qp-GGJ" sceneMemberID="firstResponder"/>
             </objects>
