@@ -31,6 +31,8 @@ final class MovieQuizViewController: UIViewController {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var counterLabel: UILabel!
+    @IBOutlet private weak var yesButton: UIButton!
+    @IBOutlet private weak var noButton: UIButton!
     
     // MARK: - Public Properties
     
@@ -154,9 +156,11 @@ final class MovieQuizViewController: UIViewController {
     
     private func showAnswerResult(isCorrect: Bool) {
         
+        noButton.isEnabled = false
+        yesButton.isEnabled = false
         
-        if isCorrect { // 1
-            correctAnswers += 1 // 2
+        if isCorrect {
+            correctAnswers += 1
         }
         
         imageView.layer.masksToBounds = true
@@ -168,6 +172,8 @@ final class MovieQuizViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.showNextQuestionOrResults()
+            self.noButton.isEnabled = true
+            self.yesButton.isEnabled = true
         }
     }
     

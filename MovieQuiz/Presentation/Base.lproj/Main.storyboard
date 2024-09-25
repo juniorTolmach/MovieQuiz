@@ -52,6 +52,11 @@
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="XCN-4f-QWo" secondAttribute="height" multiplier="2:3" id="pc2-Vj-tGG"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Рейтинг этого фильма меньше, чем 5?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVR-SE-RFK">
                                         <rect key="frame" x="0.0" y="624.5" width="374" height="99.5"/>
@@ -79,7 +84,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="noButtonClicked:" destination="Igq-lw-Dm2" eventType="touchUpInside" id="SQA-87-qiQ"/>
+                                                    <action selector="noButtonClicked:" destination="Igq-lw-Dm2" eventType="touchUpInside" id="DQg-80-4AL"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2g8-hD-6gZ">
@@ -96,7 +101,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <action selector="yesButtonClicked:" destination="Igq-lw-Dm2" eventType="touchUpInside" id="oeP-rW-Anu"/>
+                                                    <action selector="yesButtonClicked:" destination="Igq-lw-Dm2" eventType="touchUpInside" id="fJJ-V2-zn9"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -116,7 +121,9 @@
                     <connections>
                         <outlet property="counterLabel" destination="w8d-p2-5rk" id="44n-kF-A8P"/>
                         <outlet property="imageView" destination="XCN-4f-QWo" id="teO-K1-EEc"/>
+                        <outlet property="noButton" destination="zbR-BO-uTS" id="U39-sj-xMB"/>
                         <outlet property="textLabel" destination="VVR-SE-RFK" id="aja-kD-xPR"/>
+                        <outlet property="yesButton" destination="2g8-hD-6gZ" id="r0f-Eb-BT4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sL3-Qp-GGJ" sceneMemberID="firstResponder"/>
