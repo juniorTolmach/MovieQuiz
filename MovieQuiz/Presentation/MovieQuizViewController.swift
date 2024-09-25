@@ -100,6 +100,7 @@ final class MovieQuizViewController: UIViewController {
         
         let viewModel = questions[currentQuestionIndex]
         show(quiz: convert(model: viewModel))
+        setupImageView()
     }
     
     // MARK: - IBActions
@@ -119,6 +120,14 @@ final class MovieQuizViewController: UIViewController {
     }
     
     // MARK: - Private Method
+    
+    private func setupImageView() {
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 8
+        imageView.layer.borderColor = UIColor.clear.cgColor
+        imageView.layer.cornerRadius = 20
+    }
+    
     private func convert(model: QuizQuestion) -> QuizStepViewModel {
         return QuizStepViewModel(
             image: UIImage(named: model.image) ?? UIImage(),
@@ -129,7 +138,7 @@ final class MovieQuizViewController: UIViewController {
     
     private func show(quiz step: QuizStepViewModel) {
         imageView.image = step.image
-        imageView.layer.borderWidth = 0
+        imageView.layer.borderColor = UIColor.clear.cgColor
         textLabel.text = step.question
         counterLabel.text = step.questionNumber
     }
@@ -162,11 +171,6 @@ final class MovieQuizViewController: UIViewController {
         if isCorrect {
             correctAnswers += 1
         }
-        
-        imageView.layer.masksToBounds = true
-        imageView.layer.borderWidth = 8
-        imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.cornerRadius = 20
         
         imageView.layer.borderColor = isCorrect ? UIColor(resource: .ypGreen).cgColor : UIColor(resource: .ypRed).cgColor
         
