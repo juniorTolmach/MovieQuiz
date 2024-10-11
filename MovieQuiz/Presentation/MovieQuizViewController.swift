@@ -19,6 +19,8 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     private var questionFactory: QuestionFactoryProtocol?
     private var currentQuestion: QuizQuestion?
     private var resultAlert: AlertPresenter?
+    private var statisticService: StatisticServiceImplementation?
+    
     
     private var correctAnswers = 0
     
@@ -27,23 +29,15 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let questionFactory = QuestionFactory()
-        questionFactory.setup(delegate: self)
-        self.questionFactory = questionFactory
-        
-        let alertPresent = AlertPresenter()
-        alertPresent.setup(delegate: self)
-        self.resultAlert = alertPresent
-        
-        
-        questionFactory.requestNextQuestion()
-        
+        setupDelegate()
         setupImageView()
+        setupService()
+        questionFactory?.requestNextQuestion()
     }
     
     // MARK: - AlertPresenterDelegate
     
-    func showResultAlert(view: UIViewController) {
+    func didShowResultAlert(view: UIViewController) {
         present(view, animated: true)
     }
     
@@ -83,6 +77,20 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     }
     
     // MARK: - Private Method
+    
+    private func setupService() {
+        statisticService = StatisticServiceImplementation()
+    }
+    
+    private func setupDelegate() {
+        let questionFactory = QuestionFactory()
+        questionFactory.delegate = self
+        self.questionFactory = questionFactory
+        
+        let alertPresent = AlertPresenter()
+        alertPresent.delegate = self
+        self.resultAlert = alertPresent
+    }
     
     private func setupImageView() {
         imageView.layer.masksToBounds = true
@@ -127,7 +135,16 @@ final class MovieQuizViewController: UIViewController, QuestionFactoryDelegate, 
     
     private func showNextQuestionOrResults() {
         if currentQuestionIndex == questionsAmount - 1 {
-            let text = "Ваш результат: \(correctAnswers)"
+            guard let statisticService = statisticService else {
+                         return
+                     }
+                    statisticService.gamesCount += 1
+                    statisticService.store(correct: correctAnswers, total: questionsAmount)
+                    statisticService.correct += correctAnswers
+                    statisticService.total += questionsAmount
+                     
+                     let text = "Ваш результат: \(correctAnswers)/\(questionsAmount)\nКоличество сыгранных квизов:  \(statisticService.gamesCount)\nРекорд: \(statisticService.bestGame.correct)/\(statisticService.bestGame.total) (\(statisticService.bestGame.date.dateTimeString))\nСредняя точность: \(String(format: "%.2f", statisticService.totalAccuracy))%"
+            
             let viewModel = AlertModel(title: "Этот раунд окончен",
                                        message: text,
                                        buttonText: "Сыграть еще раз") { [weak self] _ in

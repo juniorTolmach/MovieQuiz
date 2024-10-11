@@ -57,10 +57,6 @@ final class QuestionFactory: QuestionFactoryProtocol {
         )
     ]
     
-    func setup(delegate: QuestionFactoryDelegate) {
-        self.delegate = delegate
-    }
-    
     func requestNextQuestion() {
         guard let index = (0..<questions.count).randomElement() else {
             delegate?.didReceiveNextQuestion(question: nil)
