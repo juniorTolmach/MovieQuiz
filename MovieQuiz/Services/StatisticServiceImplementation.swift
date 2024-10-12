@@ -70,6 +70,10 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
     func store(correct count: Int, total amount: Int) {
         let newResult = GameResult(correct: count, total: amount, date: Date())
         
+        gamesCount += 1
+        correct += count
+        total += amount
+        
         let correct = storage.integer(forKey: Keys.bestGameCorrect.rawValue)
         let total = storage.integer(forKey: Keys.bestGameTotal.rawValue)
         let date = storage.object(forKey: Keys.bestGameDate.rawValue) as? Date ?? Date()
