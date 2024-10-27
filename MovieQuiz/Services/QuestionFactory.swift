@@ -42,6 +42,19 @@ final class QuestionFactory: QuestionFactoryProtocol {
                     imageData = try Data(contentsOf: movie.resizedImageURL)
                 } catch {
                     print("Failed to load image")
+                    
+                    DispatchQueue.main.async {
+                        let model = AlertModel(title: "Ошибка загрузки",
+                                               message: "Невозможно загрузить постер",
+                                               buttonText: "Начать тест заново") { [weak self] _ in
+                            guard let self = self else { return }
+                            self.loadData()
+                        }
+                        let alert = AlertPresenter()
+                        alert.delegate = self.delegate as? any AlertPresenterDelegate
+                        alert.showAlert(model: model)
+                        return
+                    }
                 }
                 
                 let rating = Float(movie.rating) ?? 0
