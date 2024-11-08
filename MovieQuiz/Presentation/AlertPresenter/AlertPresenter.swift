@@ -14,6 +14,7 @@ final class AlertPresenter: AlertPresentProtocol {
                                       preferredStyle: .alert)
         alert.view.accessibilityIdentifier = "Alert"
         let button = UIAlertAction(title: model.buttonText, style: .default, handler: model.completion)
+        button.accessibilityIdentifier = "AlertButton"
         alert.addAction(button)
         delegate?.didShowResultAlert(view: alert)
     }
