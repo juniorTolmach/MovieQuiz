@@ -50,10 +50,6 @@ final class QuestionFactory: QuestionFactoryProtocol {
                             guard let self = self else { return }
                             self.loadData()
                         }
-                        let alert = AlertPresenter()
-                        alert.delegate = self.delegate as? any AlertPresenterDelegate
-                        alert.showAlert(model: model)
-                        return
                     }
                 }
                 

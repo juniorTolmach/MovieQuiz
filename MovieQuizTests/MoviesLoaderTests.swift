@@ -1,9 +1,6 @@
 import XCTest
 @testable import MovieQuiz
 
-import XCTest
-@testable import MovieQuiz
-
 final class MoviesLoaderTest: XCTestCase {
 
     func testSuccessLoading() throws {
@@ -41,5 +38,4 @@ final class MoviesLoaderTest: XCTestCase {
         }
         waitForExpectations(timeout: 1)
     }
-
 }
