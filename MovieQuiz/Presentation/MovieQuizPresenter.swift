@@ -172,4 +172,14 @@ extension MovieQuizPresenter: QuestionFactoryDelegate {
         }
         resultAlert?.showAlert(model: model)
     }
+    
+    func didFailToLoadImage(with error: any Error) {
+        let model = AlertModel(title: "Ошибка загрузки",
+                               message: "Невозможно загрузить постер",
+                               buttonText: "Начать тест заново") { [weak self] _ in
+            guard let self = self else { return }
+            questionFactory?.loadData()
+        }
+        resultAlert?.showAlert(model: model)
+    }
 }
