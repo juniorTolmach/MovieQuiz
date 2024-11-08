@@ -34,12 +34,12 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
     }
     
     var totalAccuracy: Double {
-          get {
-              let total = Double(storage.integer(forKey: Keys.total.rawValue))
-              let correct = Double(storage.integer(forKey: Keys.correct.rawValue))
-              return total > 0 ? (correct/total) * 100 : 0
-          }
-      }
+        get {
+            let total = Double(storage.integer(forKey: Keys.total.rawValue))
+            let correct = Double(storage.integer(forKey: Keys.correct.rawValue))
+            return total > 0 ? (correct/total) * 100 : 0
+        }
+    }
     
     var gamesCount: Int {
         get {
@@ -56,7 +56,7 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
             let correct = storage.integer(forKey: Keys.bestGameCorrect.rawValue)
             let total = storage.integer(forKey: Keys.bestGameTotal.rawValue)
             let date = storage.object(forKey: Keys.bestGameDate.rawValue) as? Date ?? Date()
-            
+            print(GameResult(correct: correct, total: total, date: date))
             return GameResult(correct: correct, total: total, date: date)
         }
         
@@ -84,5 +84,4 @@ final class StatisticServiceImplementation: StatisticServiceProtocol {
             bestGame = newResult
         }
     }
-    
 }

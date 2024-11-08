@@ -4,6 +4,7 @@ struct MostPopularMovies: Codable {
     let errorMessage: String
     let items: [MostPopularMovie]
 }
+
 struct MostPopularMovie: Codable {
     let title: String
     let rating: String
